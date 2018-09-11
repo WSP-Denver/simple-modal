@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple Modal</title>
+    <style>
+    #modalCover,
+    #modalBox {
+      display: none;
+    }
+
+    #modalCover {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      background: #000;
+      opacity: 0.5;
+    }
+
+    #modalBox {
+      position: absolute;
+      max-height: 90vh;
+      padding: 1.5rem;
+      top: 0;
+      left: 25%;
+      width: 50%;
+      background-color: #fff;
+      z-index: 110;
+    }
+  </style>
+  </head>
+
+  <body>
+
+    <button id="openModal" class="button open-modal" role="button" aria-controls="modalBox">Learn more</button>
+
+    <div id="modalCover" aria-hidden="true"></div>
+
+    <div id="modalBox" aria-hidden="true">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus nisi tenetur, voluptates iusto hic voluptate consequatur illo, at animi debitis recusandae dolorum ratione corrupti consectetur suscipit cum. Sint, non obcaecati!</p>
+      <button id="closeModal" class="button close-modal" role="button" aria-controls="modalBox">Close</button>
+    </div>
+
+    <script>
+    // Modal windows
+    var modal = document.getElementById('modalBox'),
+      shade = document.getElementById('modalCover'),
+      openModal = document.getElementById('openModal')
+      closeModal = document.getElementById('closeModal');
+
+    window.addEventListener('click', function (event) {
+
+      var clicked = event.target;
+
+      if (event.target.classList.contains('open-modal')) {
+        modal.style.display = shade.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false');
+        shade.setAttribute('aria-hidden', 'false');
+      }
+
+      if (event.target.classList.contains('close-modal')) {
+        modal.style.display = shade.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        shade.setAttribute('aria-hidden', 'true');
+      }
+
+    }, false);
+  </script>
+  </body>
+
+</html>
